@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gradle: build",
+      "type": "process",
+      "command": "./gradlew",
+      "windows": {
+        "command": "gradlew.bat"
+      },
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Gradle: test",
+      "type": "process",
+      "command": "./gradlew",
+      "windows": {
+        "command": "gradlew.bat"
+      },
+      "args": ["test"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Spring Boot: run",
+      "type": "process",
+      "command": "./gradlew",
+      "windows": {
+        "command": "gradlew.bat"
+      },
+      "args": ["bootRun"],
+      "problemMatcher": []
+    }
+  ]
+}
