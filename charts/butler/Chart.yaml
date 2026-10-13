@@ -1,0 +1,6 @@
+apiVersion: v2
+name: butler
+description: Butler Spring Boot application with PostgreSQL
+type: application
+version: 0.1.0
+appVersion: "0.0.1-SNAPSHOT"
