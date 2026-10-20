@@ -1,0 +1,22 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          butler:
+            provider: butler
+            client-id: ${BUTLER_OIDC_CLIENT_ID}
+            client-secret: ${BUTLER_OIDC_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+            client-name: Butler
+        provider:
+          butler:
+            issuer-uri: ${BUTLER_OIDC_ISSUER}
+
+server:
+  forward-headers-strategy: framework

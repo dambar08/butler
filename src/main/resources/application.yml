@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: butler
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:development}
+
+jobrunr:
+  job-scheduler:
+    enabled: true
+  background-job-server:
+    enabled: true
+  dashboard:
+    enabled: false
+  database:
+    skip-create: false
+
+server:
+  port: ${SERVER_PORT:8080}
+
+butler:
+  elasticsearch:
+    enabled: ${BUTLER_ELASTICSEARCH_ENABLED:false}
+    uris:
+      - ${BUTLER_ELASTICSEARCH_URI:http://localhost:9200}
+    username: ${BUTLER_ELASTICSEARCH_USERNAME:}
+    password: ${BUTLER_ELASTICSEARCH_PASSWORD:}
+    index-prefix: ${BUTLER_ELASTICSEARCH_INDEX_PREFIX:butler}

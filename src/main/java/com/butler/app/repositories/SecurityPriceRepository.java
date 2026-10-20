@@ -1,0 +1,8 @@
+package com.butler.app.repositories;
+
+import com.butler.app.entities.SecurityPrice;
+import java.util.UUID;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SecurityPriceRepository extends JpaRepository<SecurityPrice, UUID> {
+}

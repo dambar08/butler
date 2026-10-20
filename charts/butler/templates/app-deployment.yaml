@@ -56,6 +56,10 @@ spec:
               value: {{ .Values.app.springProfiles | quote }}
             - name: SERVER_PORT
               value: {{ .Values.app.containerPort | quote }}
+            - name: BUTLER_ELASTICSEARCH_ENABLED
+              value: {{ .Values.elasticsearch.enabled | quote }}
+            - name: BUTLER_ELASTICSEARCH_URI
+              value: {{ if .Values.elasticsearch.uri }}{{ .Values.elasticsearch.uri | quote }}{{ else if .Values.elasticsearch.enabled }}{{ printf "http://%s-elasticsearch:%v" (include "butler.fullname" .) .Values.elasticsearch.service.port | quote }}{{ else }}{{ "http://localhost:9200" | quote }}{{ end }}
             - name: SPRING_DATASOURCE_URL
               value: {{ if .Values.app.database.url }}{{ .Values.app.database.url | quote }}{{ else }}{{ printf "jdbc:postgresql://%s-postgresql:%v/%s" (include "butler.fullname" .) .Values.postgresql.service.port .Values.postgresql.auth.database | quote }}{{ end }}
             - name: SPRING_DATASOURCE_USERNAME

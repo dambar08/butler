@@ -65,3 +65,14 @@ postgresql:
     size: 8Gi
     storageClass: ""
   resources: {}
+
+elasticsearch:
+  enabled: false
+  uri: ""
+  image:
+    repository: docker.elastic.co/elasticsearch/elasticsearch
+    tag: 8.18.0
+    pullPolicy: IfNotPresent
+  service:
+    port: 9200
+  resources: {}

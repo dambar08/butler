@@ -1,0 +1,79 @@
+package com.butler.app.entities;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "simplefin_accounts")
+public class SimplefinAccount {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, updatable = false)
+    private UUID id;
+
+    @Column(name = "account_id")
+    private String accountId;
+
+    @Column(name = "account_subtype")
+    private String accountSubtype;
+
+    @Column(name = "account_type")
+    private String accountType;
+
+    @Column(name = "available_balance", precision = 19, scale = 4)
+    private BigDecimal availableBalance;
+
+    @Column(name = "balance_date")
+    private LocalDateTime balanceDate;
+
+    @Column(name = "balance_sign_override")
+    private String balanceSignOverride;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "currency")
+    private String currency;
+
+    @Column(name = "current_balance", precision = 19, scale = 4)
+    private BigDecimal currentBalance;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "extra")
+    private JsonNode extra;
+
+    @Column(name = "name")
+    private String name;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "org_data")
+    private JsonNode orgData;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "raw_holdings_payload")
+    private JsonNode rawHoldingsPayload;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "raw_payload")
+    private JsonNode rawPayload;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "raw_transactions_payload")
+    private JsonNode rawTransactionsPayload;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "simplefin_item_id", nullable = false)
+    private SimplefinItem simplefinItem;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+}
